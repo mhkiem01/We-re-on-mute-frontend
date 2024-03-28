@@ -1,0 +1,131 @@
+/* ComposePage.css */
+.compose-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    flex: 0 0 200px; /* adjust the width as needed */
+    background-color: #b6b1ec; /* purple shade */
+    color: black;
+    padding: 20px;
+  }
+  
+  .sidebar h1 {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar button {
+    display: block;
+    margin-bottom: 10px;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .compose {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .compose form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .compose label,
+  .compose input,
+  .compose textarea,
+  .compose .attach-btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .compose input,
+  .compose textarea {
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .compose textarea {
+    height: 150px; /* adjust the height as needed */
+  }
+  
+  .attach-btn {
+    background: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .homepage-compose {
+    background: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+
+  }
+
+  .composepage-compose {
+    background: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }  
+
+  .inboxpage-compose {
+    background: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .sentpage-compose {
+    background: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .compose input[type="submit"] {
+    background-color: #7c77b9; /* purple shade */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .nav-link, .active-link {
+    color: white; /* Text color */
+    display: block;
+    padding: 10px;
+    text-decoration: none; /* Removes underline */
+    text-align: center; /* Centers text in the link */
+    margin-bottom: 10px; /* Space between buttons */
+    background: #7c77b9; /* Background color */
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .active-link {
+    background-color: white; /* Different background color for active link */
+    color: white; /* Text color for active link */
+  }
+  
+  /* Add responsive styling if necessary */
+  
