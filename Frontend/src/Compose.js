@@ -1,7 +1,13 @@
-// ComposePage.js
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Compose.css';
+
+function withNavigate(WrappedComponent) {
+  return props => {
+    let navigate = useNavigate();
+    return <WrappedComponent {...props} navigate={navigate} />;
+  };
+}
 
 class ComposePage extends Component {
   constructor(props) {
@@ -10,7 +16,8 @@ class ComposePage extends Component {
       to: '',
       subject: '',
       body: '',
-      selectedFile: null
+      selectedFile: null,
+      fileName: '', // To display the name of the attached file
     };
   }
 
@@ -20,7 +27,11 @@ class ComposePage extends Component {
   };
 
   handleFileChange = (e) => {
-    this.setState({ selectedFile: e.target.files[0] });
+    const file = e.target.files[0];
+    this.setState({ 
+      selectedFile: file,
+      fileName: file ? file.name : '', // Update the fileName state
+    });
   };
 
   handleAttachClick = () => {
@@ -29,73 +40,64 @@ class ComposePage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // Process the form data here
     const { to, subject, body, selectedFile } = this.state;
-    console.log('To:', to);
-    console.log('Subject:', subject);
-    console.log('Body:', body);
-    console.log('Attached file:', selectedFile);
-
-    // If you're sending the data to a server, you would typically use
-    // an API request here, and you would send the file along with the
-    // other form data, often using FormData API.
+  
+    const formData = new FormData();
+    formData.append('to', to);
+    formData.append('subject', subject);
+    formData.append('body', body);
+    if (selectedFile) {
+      formData.append('file', selectedFile);
+    }
+  
+    fetch(`${process.env.REACT_APP_API_URL}/sendFileInternally`, {
+      method: 'POST',
+      body: formData,
+    }).then(response => {
+      if(response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok.');
+    }).then(data => {
+      alert("Message sent successfully!"); // Simple feedback
+      this.setState({
+        to: '',
+        subject: '',
+        body: '',
+        selectedFile: null,
+        fileName: '',
+      });
+      this.props.navigate('/inbox'); // Navigate to the inbox
+    }).catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
   };
 
   render() {
-    const { to, subject, body } = this.state;
-
     return (
       <div className="compose-container">
         <aside className="sidebar">
           <nav>
             <h1>Welcome!</h1>
-            <NavLink to="/home" exact className="nav-link" activeClassName="active-link">Home</NavLink>
-            <NavLink to="/compose" className="nav-link" activeClassName="active-link">Compose</NavLink>
-            <NavLink to="/inbox" className="nav-link" activeClassName="active-link">Inbox</NavLink>
-            <NavLink to="/sent" className="nav-link" activeClassName="active-link">Sent</NavLink>
+            <NavLink to="/home" className={({ isActive }) => isActive ? 'nav-link active-link' : 'nav-link'}>Home</NavLink>
+            <NavLink to="/compose" className={({ isActive }) => isActive ? 'nav-link active-link' : 'nav-link'}>Compose</NavLink>
+            <NavLink to="/inbox" className={({ isActive }) => isActive ? 'nav-link active-link' : 'nav-link'}>Inbox</NavLink>
+            <NavLink to="/sent" className={({ isActive }) => isActive ? 'nav-link active-link' : 'nav-link'}>Sent</NavLink>
           </nav>
         </aside>
         <main className="compose">
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="to">To:</label>
-            <input
-              type="email"
-              id="to"
-              name="to"
-              value={to}
-              onChange={this.handleInputChange}
-            />
+            <div className='input-box'>
+              <input type="email" id="to" name="to" value={this.state.to} onChange={this.handleInputChange} placeholder="Recipient's Email"/>
+              <input type="text" id="subject" name="subject" value={this.state.subject} onChange={this.handleInputChange} placeholder="Subject"/>
+              <textarea name="body" value={this.state.body} onChange={this.handleInputChange} placeholder="Message"></textarea>
 
-            <label htmlFor="subject">Subject:</label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              value={subject}
-              onChange={this.handleInputChange}
-            />
-
-            <textarea
-              placeholder="Write your text here..."
-              name="body"
-              value={body}
-              onChange={this.handleInputChange}
-            ></textarea>
-
-            <input
-              type="file"
-              id="fileInput"
-              style={{ display: 'none' }}
-              onChange={this.handleFileChange}
-              ref={input => this.fileInput = input}
-            />
-            <button
-              type="button"
-              className="attach-btn"
-              onClick={this.handleAttachClick}
-            >
-              Attach file
-            </button>
+              <input type="file" id="fileInput" style={{ display: 'none' }} onChange={this.handleFileChange} ref={input => this.fileInput = input} />
+              <button type="button" className="attach-btn" onClick={this.handleAttachClick}>
+                Attach file
+              </button>
+              {this.state.fileName && <div className="file-name">{this.state.fileName}</div>} {/* Display the attached file name */}
+            </div>
             <input type="submit" value="Send" />
           </form>
         </main>
@@ -104,4 +106,4 @@ class ComposePage extends Component {
   }
 }
 
-export default ComposePage;
+export default withNavigate(ComposePage);

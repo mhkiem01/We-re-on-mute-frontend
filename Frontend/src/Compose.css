@@ -31,7 +31,6 @@
   }
   
   .compose form {
-    background-color: white;
     padding: 20px;
     border-radius: 8px;
   }
@@ -44,6 +43,9 @@
     width: 100%;
     margin-bottom: 15px;
   }
+  .compose label {
+    font-weight: bold; /* Make labels bold */
+  }
   
   .compose input,
   .compose textarea {
@@ -51,11 +53,24 @@
     padding: 10px;
     border-radius: 4px;
   }
-  
-  .compose textarea {
-    height: 150px; /* adjust the height as needed */
+
+  .to-box {
+    background-color: #ccc;
+    padding: 5px 5px;
+    border-radius: 8px;
   }
-  
+  .subject-box {
+    background-color: #ccc;
+    padding: 5px 5px;
+    border-radius: 8px;
+  }
+  .input-box {
+    background-color: #faf6f6; /* Light gray background */
+    padding: 15px ; /* Add padding around the input fields */
+    border-radius: 8px; /* Add rounded corners */
+    margin-bottom: 15px; /* Space between input boxes */
+  }
+
   .attach-btn {
     background: #ccc;
     border: none;
@@ -64,33 +79,21 @@
     cursor: pointer;
   }
 
-  .homepage-compose {
-    background: #ccc;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 10px;
-
+  
+  .input-box textarea {
+    height: 100px; /* Adjust the height as needed */
+    width: 95%; /* Set the width to fill the container */
   }
 
-  .composepage-compose {
-    background: #ccc;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }  
-
-  .inboxpage-compose {
-    background: #ccc;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 10px;
+  .compose input[type="email"],
+  .compose input[type="text"] {
+    width: 95%; /* Set the width to fill 95% of the container */
+    padding: 10px; /* Adjust padding as needed */
+    border: 2px solid #ccc; /* Add border for visual clarity */
+    border-radius: 4px; /* Add border radius for rounded corners */
+    margin-bottom: 15px; /* Space between input boxes */
   }
+
 
   .sentpage-compose {
     background: #ccc;
@@ -110,22 +113,28 @@
     cursor: pointer;
   }
 
-  .nav-link, .active-link {
-    color: white; /* Text color */
+  .nav-link {
+    color: white; /* Text color for non-active links */
     display: block;
     padding: 10px;
     text-decoration: none; /* Removes underline */
     text-align: center; /* Centers text in the link */
     margin-bottom: 10px; /* Space between buttons */
-    background: #7c77b9; /* Background color */
+    background: #7c77b9; /* Background color for non-active links */
     border-radius: 4px;
     cursor: pointer;
   }
   
-  .active-link {
-    background-color: white; /* Different background color for active link */
-    color: white; /* Text color for active link */
+  .nav-link:hover {
+    /* Optional: Slightly different background on hover for better user experience */
+    background-color: #6a60b0; /* Slightly lighter purple */
   }
+  
+  .active-link {
+    background-color: #cccc; /* Different background color for active link */
+    color: #7c77b9; /* Change text color for visibility on white background */
+  }
+  
   
   /* Add responsive styling if necessary */
   
