@@ -3,18 +3,18 @@
 import fs from 'fs';
 
 interface User {
-    // firstName: string;
-    // lastName: string;
+    name: string;
     email: string;
     password: string;
 }
 
 interface File {
-    id: string;
-    name: string;
-    format: string;
-    content: string;
+  id: string;
+  name: string;
+  format: string;
+  path: string; 
 }
+
 
 interface receivedFile {
     fileId: string;
@@ -57,10 +57,10 @@ function setData(newData: DataStore) {
   fs.writeFileSync('src/data.json', dataString);
 }
 
-export const addFile = (name: string, format: string, content: string): string => {
+export const addFile = (name: string, format: string, path: string): string => {
   data = getData();
   const fileId = generateId();
-  const file: File = { id: fileId, name, format, content };
+  const file: File = { id: fileId, name, format, path };
   data.files.push(file);
   setData(data);
 
@@ -114,9 +114,9 @@ function generateId(): string {
   return Math.random().toString(36).substr(2, 9);
 }
 
-export const addUser = (email: string, password: string): void => {
+export const addUser = (name: string, email: string, password: string): void => {
   data = getData();
-  data.users[email] = { email, password };
+  data.users[email] = { name, email, password };
   setData(data);
 };
 
