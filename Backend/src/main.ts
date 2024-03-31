@@ -1,6 +1,8 @@
 // main.ts
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
+
 import registerRoute from './routes/register';
 import loginRoute from './routes/login';
 import deleteUserRoute from './routes/deleteUser';
@@ -10,11 +12,17 @@ import receiveFileRoute from './routes/receiveFile';
 import checkInternalReceivingRoute from './routes/checkInternalReceiving';
 import notificationsRoute from './routes/notifications';
 import possibleFilesRoute from './routes/possibleFiles';
-import startServer from './startServer';
 
 const app = express();
 
 app.use(bodyParser.json());
+
+const corsOptions = {
+    origin: 'http://localhost:3000', 
+    optionsSuccessStatus: 200 
+};
+
+app.use(cors(corsOptions));
 
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);

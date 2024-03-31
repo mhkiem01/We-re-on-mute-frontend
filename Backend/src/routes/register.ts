@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
   // Registration logic
-  const { email, password } = req.body;
+  const { Name, email, password } = req.body; // Changed variable name to Name
 
-  // Check if email and password are provided
-  if (!email || !password) {
-    return res.status(400).json({ message: 'Email and password are required' });
+  // Check if Name, email, and password are provided // Changed variable name to Name
+  if (!Name || !email || !password) {
+    return res.status(400).json({ message: 'Name, email, and password are required' }); // Changed variable name to Name
   }
 
   // Validate email format
@@ -34,7 +34,7 @@ router.post('/', async (req: Request, res: Response) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Create new user
-  addUser(email, hashedPassword);
+  addUser(email, hashedPassword, Name); // Changed variable name to Name
 
   res.status(201).json({ message: 'User registered successfully' });
 });

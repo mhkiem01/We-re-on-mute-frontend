@@ -1,0 +1,96 @@
+/* Inbox.css - Updated to match ComposePage.css styling */
+
+.inbox-container {
+    display: flex;
+    height: 100vh;
+}
+
+.menu-sidebar {
+    flex: 0 0 200px; /* Same width as ComposePage */
+    background-color: #b6b1ec; /* Matching background color */
+    color: black;
+    padding: 20px;
+}
+
+.menu-item {
+    display: block;
+    margin-bottom: 10px; /* Consistent margin */
+    background: #7c77b9; /* Same background color for non-active links */
+    color: white; /* Text color */
+    padding: 10px; /* Consistent padding */
+    text-decoration: none; /* No underline */
+    text-align: center; /* Center text alignment */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background-color: #ffffff; /* White background color for active link */
+    color: #7c77b9; /* Text color for active link to match ComposePage.css */
+}
+
+.inbox-content {
+    flex-grow: 1;
+    background-color: #f4f4f7; /* Content background color */
+    padding: 20px; /* Content padding */
+}
+
+.welcome-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 200px; /* Width of search bar */
+    border-radius: 4px;
+    border: 2px solid #ccc; /* Border styling */
+}
+
+.inbox-list {
+    background-color: #ffffff; /* Background color for the list */
+}
+
+.inbox-item {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 10px; /* Space between items */
+    border-radius: 4px; /* Rounded corners */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for each item */
+}
+
+.sender {
+    font-weight: bold; /* Bold font for sender */
+}
+
+.subject {
+    color: #555; /* Color for the subject */
+}
+
+.nav-link {
+    /* Other styling properties */
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    background: #7c77b9;
+    text-align: center;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: #6a60b0; /* Slightly lighter purple for hover */
+}
+
+.active-link {
+    background-color: #cccc; /* Different background color for active link */
+    color: #7c77b9; /* Change text color for visibility on white background */
+}

@@ -1,0 +1,54 @@
+/* InboxItem.css */
+
+.inbox-item {
+    cursor: pointer;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .inbox-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .item-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .item-header {
+    margin-bottom: 8px;
+  }
+  
+  .sender-info {
+    font-size: 0.9em;
+    color: #555;
+  }
+  
+  .sender-name {
+    font-weight: bold;
+  }
+  
+  .item-summary {
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 12px;
+  }
+  
+  .item-attachments {
+    display: flex;
+  }
+  
+  .attachment-thumbnail {
+    width: 48px;
+    height: 48px;
+    background-color: #ddd;
+    margin-right: 8px;
+    border-radius: 4px;
+  }
+  
+  /* Add responsive design as needed */
+  

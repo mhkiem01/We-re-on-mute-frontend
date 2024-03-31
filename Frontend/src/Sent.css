@@ -1,0 +1,77 @@
+/* Sent.css - Ensure consistency with ComposePage and Inbox styling */
+
+.sent-container {
+    display: flex;
+    height: 100vh;
+}
+
+.menu-sidebar {
+    flex: 0 0 200px;
+    background-color: #b6b1ec;
+    color: white;
+    padding: 20px;
+}
+
+.nav-link {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #7c77b9;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: #6a60b0;
+}
+
+.active-link {
+    background-color: #ffffff;
+    color: #7c77b9;
+}
+
+.sent-content {
+    flex-grow: 1;
+    background-color: #f4f4f7;
+    padding: 20px;
+}
+
+.welcome-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 200px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+}
+
+.sent-list {
+    background-color: #ffffff;
+}
+
+.sent-item {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipient {
+    font-weight: bold;
+}
+
+.subject {
+    color: #555;
+}
