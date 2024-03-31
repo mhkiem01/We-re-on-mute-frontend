@@ -46,9 +46,9 @@ let data: DataStore = {
 // const notifications: notification[] = [];
 
 // Use getData() to access the data
-function getData(): DataStore {
+export function getData() {
   const dataString = fs.readFileSync('src/data.json');
-  return JSON.parse(String(dataString)) as DataStore;
+  data = JSON.parse(String(dataString)) as DataStore;
 }
 
 // Use setData(newData) to pass in the entire data object, with modifications made
@@ -58,7 +58,6 @@ function setData(newData: DataStore) {
 }
 
 export const addFile = (name: string, format: string, path: string): string => {
-  data = getData();
   const fileId = generateId();
   const file: File = { id: fileId, name, format, path };
   data.files.push(file);
@@ -68,24 +67,20 @@ export const addFile = (name: string, format: string, path: string): string => {
 };
 
 export const getFileById = (fileId: string): File | undefined => {
-  data = getData();
   return data.files.find(file => file.id === fileId);
 };
 
 export const addReceivedFile = (fileId: string, content: string): void => {
-  data = getData();
   data.receivedFiles.push({ fileId, content });
   setData(data);
 };
 
 export const getReceivedFileContent = (fileId: string): string | undefined => {
-  data = getData();
   const receivedFile = data.receivedFiles.find(file => file.fileId === fileId);
   return receivedFile ? receivedFile.content : undefined;
 };
 
 export const getAllPossibleFiles = (): File[] => {
-  data = getData();
   return data.files;
 };
 
@@ -100,13 +95,11 @@ export const checkInternalSending = (fileId: string): boolean => {
 };
 
 export const addNotification = (fileId: string, message: string): void => {
-  data = getData();
   data.notifications.push({ fileId, message });
   setData(data);
 };
 
 export const getNotifications = (): notification[] => {
-  data = getData();
   return data.notifications;
 };
 
@@ -115,24 +108,20 @@ function generateId(): string {
 }
 
 export const addUser = (name: string, email: string, password: string): void => {
-  data = getData();
   data.users[email] = { name, email, password };
   setData(data);
 };
 
 export const getUserByEmail = (email: string): User | undefined => {
-  data = getData();
   return data.users[email];
 };
 
 export const deleteUserByEmail = (email: string): void => {
-  data = getData();
   delete data.users[email];
   setData(data);
 };
 
 export const getAllUsers = (): User[] => {
-  data = getData();
   return Object.values(data.users);
 };
 
@@ -151,8 +140,6 @@ export const updateUserPassword = (email: string, newPassword: string): boolean 
 };
 
 export const clearData = (): void => {
-  data = getData();
-
   // Empty all the arrays in the data structure by reassigning each array to an
   // empty array
   data.users = {};
