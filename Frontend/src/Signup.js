@@ -29,13 +29,6 @@ function Signup() {
           <div className="login-section">
             <span>Already have an account? <a href="/" className="login-link">Log in</a></span>
           </div>
-          <div className="social-signup">
-            {/*will update with FontAwesome */}
-            <button className="social-button google">G</button>
-            <button className="social-button facebook">f</button>
-            <button className="social-button instagram">In</button>
-            <button className="social-button twitter">T</button>
-          </div>
         </div>
       </div>
     </div>

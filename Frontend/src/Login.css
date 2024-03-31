@@ -98,25 +98,4 @@ html, body {
   text-decoration: none;
 }
 
-.social-login {
-  display: flex;
-  justify-content: center;
-  margin-right: 8px;
-}
-
-.social-button {
-  padding: 10px;
-  margin: 0 5px;
-  margin-right: 8px;
-  border: none;
-  cursor: pointer;
-  /* Additional styling for colors, backgrounds, etc., can be added here */
-}
-
-/* Example for one social button, the others would be similar */
-.social-button.google {
-  background-color: #db4437;
-  color: white;
-}
-
 /* Styles for the social media buttons can be extended with specific colors, icons, etc. */
