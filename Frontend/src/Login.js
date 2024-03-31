@@ -34,13 +34,6 @@ function Login() {
           <div className="signup-section">
             <span>Don't have an account? <a href="/signup" className="sign-up-link">Sign up</a></span>
           </div>
-          <div className="social-login">
-            {/*will update with FontAwesome */}
-            <button className="social-button google">G</button>
-            <button className="social-button facebook">f</button>
-            <button className="social-button instagram">In</button>
-            <button className="social-button twitter">T</button>
-          </div>
         </div>
       </div>
     </div>
