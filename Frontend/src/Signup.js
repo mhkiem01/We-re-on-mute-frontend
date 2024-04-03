@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import './Signup.css'; // Make sure this points to your CSS file
 
 function Signup() {

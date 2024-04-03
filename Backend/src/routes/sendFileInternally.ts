@@ -8,8 +8,8 @@ const router = express.Router();
 // Setup multer for file uploads
 const upload = multer({ dest: 'uploads/' }); // Files will be saved in 'uploads/' directory
 
-router.post('/', upload.single('file'), validateFileRequest, (req: Request, res: Response) => {
-  const { name, format, message } = req.body;
+router.post('/', upload.single('selectedFile'), validateFileRequest, (req: Request, res: Response) => {
+  const { to, subject, body } = req.body;
   const file = req.file; // File is provided by multer
 
   if (!file) {
@@ -17,10 +17,10 @@ router.post('/', upload.single('file'), validateFileRequest, (req: Request, res:
   }
 
   // Assuming `addFile` now takes a path instead of content
-  const fileId = addFile(name, format, file.path);
+  const fileId = addFile(file.originalname, file.mimetype, file.path); // Assuming `name` and `format` are obtained from file object
 
   // Add notification
-  addNotification(fileId, message);
+  addNotification(fileId, body); // Assuming `message` is the email body
 
   res.status(200).json({ message: 'File sent internally and notification added successfully' });
 });
