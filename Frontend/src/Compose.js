@@ -86,7 +86,7 @@ class ComposePage extends Component {
           </nav>
         </aside>
         <main className="compose">
-          <form onSubmit={this.handleSubmit}>
+          <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
             <div className='input-box'>
               <input type="email" id="to" name="to" value={this.state.to} onChange={this.handleInputChange} placeholder="Recipient's Email"/>
               <input type="text" id="subject" name="subject" value={this.state.subject} onChange={this.handleInputChange} placeholder="Subject"/>

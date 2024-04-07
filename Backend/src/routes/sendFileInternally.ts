@@ -8,7 +8,7 @@ const router = express.Router();
 // Setup multer for file uploads
 const upload = multer({ dest: 'uploads/' }); // Files will be saved in 'uploads/' directory
 
-router.post('/', upload.single('selectedFile'), validateFileRequest, (req: Request, res: Response) => {
+router.post('/', upload.single('file'), validateFileRequest, (req: Request, res: Response) => {
   const { to, subject, body } = req.body;
   const file = req.file; // File is provided by multer
 
