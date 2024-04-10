@@ -24,7 +24,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './Backend/package-lock.json'
     - run: cd Backend
-    - run: npm ci
+    - run: npm install
     - run: SERVER_LOG=$(mktemp)
     - run: npm run start >& $SERVER_LOG &
     - run: cat $SERVER_LOG
@@ -48,7 +48,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './Backend/package-lock.json'
     - run: cd Backend
-    - run: npm ci
+    - run: npm install
     - run: npm run lint
 
   build:
@@ -66,5 +66,5 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './Frontend/package-lock.json'
     - run: cd Frontend
-    - run: npm ci
+    - run: npm install
     - run: npm run build
