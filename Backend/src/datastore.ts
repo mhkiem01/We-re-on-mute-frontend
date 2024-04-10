@@ -12,9 +12,8 @@ interface File {
   id: string;
   name: string;
   format: string;
-  path: string; 
+  path: string;
 }
-
 
 interface receivedFile {
     fileId: string;
