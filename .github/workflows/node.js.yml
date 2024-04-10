@@ -11,6 +11,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Backend
     strategy:
       matrix:
         node-version: [21.x]
@@ -23,8 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: './Backend/package-lock.json'
-    - run: cd Backend
-    - run: npm install
+    - run: npm ci
     - run: SERVER_LOG=$(mktemp)
     - run: npm run start >& $SERVER_LOG &
     - run: cat $SERVER_LOG
@@ -35,6 +37,9 @@ jobs:
 
   linting:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Backend
     strategy:
       matrix:
         node-version: [21.x]
@@ -47,12 +52,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: './Backend/package-lock.json'
-    - run: cd Backend
-    - run: npm install
+    - run: npm ci
     - run: npm run lint
 
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Frontend
     strategy:
       matrix:
         node-version: [21.x]
@@ -65,6 +72,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: './Frontend/package-lock.json'
-    - run: cd Frontend
-    - run: npm install
+    - run: npm ci
     - run: npm run build
