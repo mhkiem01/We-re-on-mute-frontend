@@ -7,12 +7,14 @@ const router = express.Router();
 
 const upload = multer({ dest: 'uploads/' }); 
 
-router.post('/', upload.single('selectedFile'), validateFileRequest, (req: Request, res: Response) => {
-  const { to, subject, body, file } = req.body;
+router.post('/', upload.single('file'), validateFileRequest, (req: Request, res: Response) => {
+  const { to, subject, body} = req.body;
+  const file = req.file;
+  console.log("file:", file);
   if (!file) {
     return res.status(400).json({ message: 'File upload failed' });
   }
-  console.log(file);
+
   // const fileId = addFile(file.)
   // const fileId = addFile(file.originalname, file.mimetype, file.path); 
 
