@@ -16,8 +16,8 @@ class ComposePage extends Component {
       to: '',
       subject: '',
       body: '',
-      selectedFile: null,
-      fileName: '', // To display the name of the attached file
+      file: null,
+      fileName: '', 
     };
   }
 
@@ -29,8 +29,8 @@ class ComposePage extends Component {
   handleFileChange = (e) => {
     const file = e.target.files[0];
     this.setState({ 
-      selectedFile: file,
-      fileName: file ? file.name : '', // Update the fileName state
+      file: file,
+      fileName: file ? file.name : '', 
     });
   };
 
@@ -40,16 +40,16 @@ class ComposePage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { to, subject, body, selectedFile } = this.state;
+    const { to, subject, body, file } = this.state;
   
     const formData = new FormData();
     formData.append('to', to);
     formData.append('subject', subject);
     formData.append('body', body);
-    if (selectedFile) {
-      formData.append('file', selectedFile);
+    if (file) {
+      formData.append('file', file);
     }
-  
+
     fetch(`${process.env.REACT_APP_API_URL}/sendFileInternally`, {
       method: 'POST',
       body: formData,
@@ -59,15 +59,15 @@ class ComposePage extends Component {
       }
       throw new Error('Network response was not ok.');
     }).then(data => {
-      alert("Message sent successfully!"); // Simple feedback
+      alert("Message sent successfully!"); 
       this.setState({
         to: '',
         subject: '',
         body: '',
-        selectedFile: null,
+        file: null,
         fileName: '',
       });
-      this.props.navigate('/inbox'); // Navigate to the inbox
+      this.props.navigate('/inbox'); 
     }).catch(error => {
       console.error('There has been a problem with your fetch operation:', error);
     });
@@ -86,7 +86,7 @@ class ComposePage extends Component {
           </nav>
         </aside>
         <main className="compose">
-          <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <div className='input-box'>
               <input type="email" id="to" name="to" value={this.state.to} onChange={this.handleInputChange} placeholder="Recipient's Email"/>
               <input type="text" id="subject" name="subject" value={this.state.subject} onChange={this.handleInputChange} placeholder="Subject"/>
@@ -96,7 +96,7 @@ class ComposePage extends Component {
               <button type="button" className="attach-btn" onClick={this.handleAttachClick}>
                 Attach file
               </button>
-              {this.state.fileName && <div className="file-name">{this.state.fileName}</div>} {/* Display the attached file name */}
+              {this.state.fileName && <div className="file-name">{this.state.fileName}</div>} 
             </div>
             <input type="submit" value="Send" />
           </form>

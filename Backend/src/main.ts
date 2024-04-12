@@ -17,12 +17,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200
-};
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
