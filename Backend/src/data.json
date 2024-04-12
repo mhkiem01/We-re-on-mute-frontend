@@ -1,5 +1,16 @@
 {
-  "users": {},
+  "users": {
+    "$2a$10$eNordWT2VH80jIun49zDNuDTNAzeFg7Oxpsit/ZDE3CgBUyXaVpRu": {
+      "name": "aqisha99@yahoo.com",
+      "email": "$2a$10$eNordWT2VH80jIun49zDNuDTNAzeFg7Oxpsit/ZDE3CgBUyXaVpRu",
+      "password": "Muhammad Hakiem Bin Zulkifli"
+    },
+    "$2a$10$yF/qB2lfyatz3z240O2a2e6j8S.y9mg8dBZGSffYV4V/kUBK5VH7y": {
+      "name": "aqisha99@yahoo.com",
+      "email": "$2a$10$yF/qB2lfyatz3z240O2a2e6j8S.y9mg8dBZGSffYV4V/kUBK5VH7y",
+      "password": "Muhammad Hakiem Bin Zulkifli"
+    }
+  },
   "files": [],
   "receivedFiles": [],
   "notifications": []
