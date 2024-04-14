@@ -18,6 +18,8 @@ const Homepage = () => {
               <li><a href="/compose" className="menu-button">Compose</a></li>
               <li><a href="/inbox" className="menu-button">Inbox</a></li>
               <li><a href="/sent" className="menu-button">Sent</a></li>
+              <li><a href="/validation" className="menu-button">Validation</a></li>
+              <li><a href="/creation" className="menu-button">Creation</a></li>
             </ul>
           </nav>
         </main>

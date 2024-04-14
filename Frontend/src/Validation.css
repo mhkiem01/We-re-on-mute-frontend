@@ -1,0 +1,56 @@
+/* Validation.css */
+.validation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f3f3f3;
+    font-family: 'Arial', sans-serif;
+}
+
+.validation-container h1 {
+    color: #333;
+}
+
+.validation-container form {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.validation-container .selection-group {
+    margin-bottom: 20px;
+}
+
+.validation-container .selection-group label {
+    margin-right: 10px;
+}
+
+.validation-container .file-input-group {
+    margin-bottom: 20px;
+}
+
+.validation-container .action-buttons {
+    margin-top: 20px;
+}
+
+.validation-container button {
+    background-color: #6F5AC9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.validation-container button:hover {
+    background-color: #7C69D4;
+}
+
+.validation-container span {
+    display: block;
+    margin-top: 10px;
+}
