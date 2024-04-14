@@ -34,7 +34,7 @@ router.post('/', async (req: Request, res: Response) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Create new user
-  addUser(email, hashedPassword, Name); // Changed variable name to Name
+  addUser(Name, email, hashedPassword); // Changed variable name to Name
 
   res.status(201).json({ message: 'User registered successfully' });
 });
