@@ -4,7 +4,7 @@ import { addUser, getUserByEmail } from '../datastore';
 
 describe('DELETE /user', () => {
   it('should delete a user with valid email', async () => {
-    addUser('test@example.com', 'password');
+    addUser('John Doe', 'test@example.com', 'password');
 
     const response = await request(app)
       .delete('/user')

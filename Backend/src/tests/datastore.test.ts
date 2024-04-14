@@ -3,16 +3,16 @@ import * as datastore from '../datastore';
 
 describe('File Management', () => {
   it('should add a file and retrieve it by ID', () => {
-    const fileId = datastore.addFile('test.txt', 'txt', 'Test file content');
+    const fileId = datastore.addFile('test.txt', 'txt', '../example1.xml');
     const file = datastore.getFileById(fileId);
     expect(file).toBeDefined();
     expect(file?.name).toBe('test.txt');
     expect(file?.format).toBe('txt');
-    expect(file?.content).toBe('Test file content');
+    expect(file?.path).toBe('../example1.xml');
   });
 
   it('should add a received file and retrieve its content', () => {
-    const fileId = datastore.addFile('test.txt', 'txt', 'Test file content');
+    const fileId = datastore.addFile('test.txt', 'txt', '../example1.xml');
     datastore.addReceivedFile(fileId, 'Received file content');
     const receivedContent = datastore.getReceivedFileContent(fileId);
     expect(receivedContent).toBe('Received file content');
@@ -24,7 +24,7 @@ describe('File Management', () => {
   });
 
   it('should check internal sending', () => {
-    const fileId = datastore.addFile('test.txt', 'txt', 'Test file content');
+    const fileId = datastore.addFile('test.txt', 'txt', '../example1.xml');
     datastore.addReceivedFile(fileId, 'Test file content');
     const internalSending = datastore.checkInternalSending(fileId);
     expect(internalSending).toBe(true);
@@ -33,9 +33,10 @@ describe('File Management', () => {
 
 describe('User Management', () => {
   it('should add a user and retrieve it by email', () => {
-    datastore.addUser('test@example.com', 'password');
+    datastore.addUser('John Doe', 'test@example.com', 'password');
     const user = datastore.getUserByEmail('test@example.com');
     expect(user).toBeDefined();
+    expect(user?.name).toBe('John Doe');
     expect(user?.email).toBe('test@example.com');
     expect(user?.password).toBe('password');
   });
@@ -54,7 +55,7 @@ describe('User Management', () => {
 
 describe('Notification Management', () => {
   it('should add a notification and retrieve all notifications', () => {
-    const fileId = datastore.addFile('test.txt', 'txt', 'Test file content');
+    const fileId = datastore.addFile('test.txt', 'txt', '../example1.xml');
     datastore.addNotification(fileId, 'File processed successfully');
     const notifications = datastore.getNotifications();
     expect(notifications.length).toEqual(expect.any(Number));

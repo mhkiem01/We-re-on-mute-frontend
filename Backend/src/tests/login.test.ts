@@ -9,6 +9,7 @@ describe('POST /login', () => {
     await request(app)
       .post('/register')
       .send({
+        Name: 'John Doe',
         email: 'test@example.com',
         password: 'password'
       });
@@ -62,7 +63,7 @@ describe('POST /login', () => {
     expect(response.status).toBe(401);
   });
 
-  it('should return 400 if email is wrong', async () => {
+  it('should return 400 if password is not provided', async () => {
     const response = await request(app)
       .post('/login')
       .send({
