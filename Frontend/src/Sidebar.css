@@ -1,0 +1,32 @@
+/* Sidebar.css */
+.sidebar {
+    background-color: #CDC6E7;
+    padding: 20px;
+    min-width: 200px;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  .sidebar .logo {
+    margin-bottom: 30px;
+    /* Add styles for your logo here */
+  }
+  
+  .sidebar .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar .menu li {
+    padding: 10px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar .menu li:hover {
+    background-color: #7C69D4;
+  }
