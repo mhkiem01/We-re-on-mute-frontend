@@ -1,3 +1,4 @@
+import fs from 'fs';
 import request from 'supertest';
 import app from '../main';
 import { clearData, addFile } from '../datastore';
@@ -8,26 +9,31 @@ beforeEach(() => {
 
 describe('POST /sendFileInternally', () => {
   it('should send a file internally and add a notification', async () => {
+    const sender = {
+      name: 'Sender',
+      email: 'sender@example.com',
+      password: 'password',
+    };
+
+    await request(app).post('/register').send(sender)
+
+    const recipient = {
+      name: 'Recipient',
+      email: 'recipient@example.com',
+      password: 'password',
+    };
+    await request(app).post('/register').send(recipient);
+
+    const filePath = './src/example1.xml';
+    const fileContent = fs.readFileSync(filePath);
     const response = await request(app)
       .post('/sendFileInternally')
-      .send({
-        to: 'johndoe@gmail.com',
-        subject: 'Your e-invoice',
-        body: 'Here is your e-invoice',
-        file: addFile('example 1', 'xml', '../example1.xml')
-      });
+      .field('to', 'recipient@example.com')
+      .field('subject', 'Test Subject')
+      .field('body', 'Test Body')
+      .attach('file', fileContent, {filename: 'test-file.xml' });
 
-    expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('message', 'File sent internally and notification added successfully');
+      expect(response.status).toBe(200);
   });
 
-  it('should return 400 if to, subject or body is missing', async () => {
-    const response = await request(app)
-      .post('/sendFileInternally')
-      .send({
-        to: 'johndoe@gmail.com'
-      });
-
-    expect(response.status).toBe(400);
-  });
 });

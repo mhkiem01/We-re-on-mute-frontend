@@ -6,6 +6,7 @@ interface User {
     name: string;
     email: string;
     password: string;
+    sentFiles: string[];
 }
 
 interface File {
@@ -13,23 +14,26 @@ interface File {
   name: string;
   format: string;
   path: string;
+  sender: string;
 }
 
-interface receivedFile {
+interface ReceivedFile {
     fileId: string;
     content: string;
+    recipient: string;
 }
 
-interface notification {
+interface Notification {
     fileId: string;
+    recipient: string;
     message: string;
 }
 
 interface DataStore {
     users: { [key: string]: User };
     files: File[];
-    receivedFiles: receivedFile[];
-    notifications: notification[];
+    receivedFiles: ReceivedFile[];
+    notifications: Notification[];
 }
 
 let data: DataStore = {
@@ -56,13 +60,42 @@ function setData(newData: DataStore) {
   fs.writeFileSync('src/data.json', dataString);
 }
 
-export const addFile = (name: string, format: string, path: string): string => {
+export const addFile = (name: string, format: string, path: string, senderEmail: string): string => {
   const fileId = generateId();
-  const file: File = { id: fileId, name, format, path };
+  const file: File = { id: fileId, name, format, path, sender: senderEmail };
   data.files.push(file);
+  // Update sender's sentFiles array
+  if (data.users[senderEmail]) {
+      data.users[senderEmail].sentFiles.push(fileId);
+  }
   setData(data);
 
   return fileId;
+};
+
+export const sendFile = (fileId: string, recipientEmail: string): void => {
+  const file = data.files.find(file => file.id === fileId);
+  if (file) {
+      const receivedFile: ReceivedFile = { fileId, content: file.path, recipient: recipientEmail };
+      data.receivedFiles.push(receivedFile);
+      // Add notification for recipient
+      const message = `You received a file (${file.name}.${file.format}) from ${data.users[file.sender].name}`;
+      const notification: Notification = { fileId, recipient: recipientEmail, message };
+      data.notifications.push(notification);
+      setData(data);
+  }
+};
+
+export const getSentFiles = (senderEmail: string): File[] => {
+  return data.files.filter(file => file.sender === senderEmail);
+};
+
+export const getReceivedFiles = (recipientEmail: string): ReceivedFile[] => {
+  return data.receivedFiles.filter(file => file.recipient === recipientEmail);
+};
+
+export const getNotificationsForUser = (recipientEmail: string): Notification[] => {
+  return data.notifications.filter(notification => notification.recipient === recipientEmail);
 };
 
 export const getFileById = (fileId: string): File | undefined => {

@@ -1,26 +1,15 @@
 // routes/notifications.ts
 import express, { Request, Response } from 'express';
-import { getNotifications, markNotificationAsViewed } from '../datastore';
+import { getNotificationsForUser } from '../datastore';
 
 const router = express.Router();
 
 router.get('/', (req: Request, res: Response) => {
-  const recipientEmail = req.user.email; // Assuming you have authentication middleware
-  const notifications = getNotifications(recipientEmail);
-  res.status(200).json(notifications);
-});
+    const userEmail = req.query.userEmail as string; // Assuming userEmail is provided as a query parameter
+    const notifications = getNotificationsForUser(userEmail);
 
-router.post('/:notificationId/markAsViewed', (req: Request, res: Response) => {
-  const recipientEmail = req.user.email; // Assuming you have authentication middleware
-  const notificationId = req.params.notificationId;
-
-  const markedAsViewed = markNotificationAsViewed(notificationId, recipientEmail);
-
-  if (markedAsViewed) {
-    res.status(200).json({ message: 'Notification marked as viewed successfully' });
-  } else {
-    res.status(404).json({ message: 'Notification not found or not owned by the user' });
-  }
+    res.status(200).json({ notifications });
 });
 
 export default router;
+

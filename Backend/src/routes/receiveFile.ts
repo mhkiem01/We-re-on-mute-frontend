@@ -1,24 +1,26 @@
-// routes/receiveFile.ts
 import express, { Request, Response } from 'express';
-import { receiveFileInternally } from '../datastore';
+import { addReceivedFile, addNotification, getUserByEmail } from '../datastore';
 import { validateFileRequest } from '../middleware/validateRequest';
 
 const router = express.Router();
 
 router.post('/', validateFileRequest, (req: Request, res: Response) => {
-  const { name, format, content, recipient, message } = req.body;
+    const { name, format, content, recipient, message } = req.body;
 
-  if (!name || !format || !content || !recipient || !message) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
+    if (!name || !format || !content || !recipient || !message) {
+        return res.status(400).json({ message: 'Missing required fields' });
+    }
 
-  const fileId = receiveFileInternally(recipient, name, format, content);
+    const recipientUser = getUserByEmail(recipient);
 
-  if (!fileId) {
-    return res.status(500).json({ message: 'Failed to receive file internally' });
-  }
+    if (!recipientUser) {
+        return res.status(404).json({ message: 'Recipient not found' });
+    }
 
-  res.status(200).json({ message: 'File received internally and notification added successfully', fileId });
+    const fileId = addReceivedFile(name, format, content, recipient);
+    addNotification(fileId, message);
+
+    res.status(200).json({ message: 'File received internally and notification added successfully', fileId });
 });
 
 export default router;
