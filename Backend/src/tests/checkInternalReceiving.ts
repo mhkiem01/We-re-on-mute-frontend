@@ -11,7 +11,7 @@ describe('GET /checkInternalReceiving/:fileId', () => {
       const example1Content = fs.readFileSync(example1FilePath, 'utf-8');
 
       // Add example1 file to datastore
-      example1FileId = addFile('example1', 'xml', example1Content );
+      example1FileId = addFile('example1', 'xml', example1FilePath, 'test@example.com' );
     });
 
   it('should return 200 if file is received internally correctly', async () => {

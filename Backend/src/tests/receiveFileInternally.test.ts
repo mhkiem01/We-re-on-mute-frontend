@@ -13,7 +13,7 @@ describe('POST /receiveFileInternally', () => {
       .send({
         name: 'testFile',
         format: 'txt',
-        content: 'This is a test file',
+        path: '../example1.xml',
         message: 'Test message'
       });
 
@@ -21,13 +21,13 @@ describe('POST /receiveFileInternally', () => {
     expect(response.body).toHaveProperty('message', 'File received internally and notification added successfully');
   });
 
-  it('should return 400 if name, format, content, or message is missing', async () => {
+  it('should return 400 if name, format, path, or message is missing', async () => {
     const response = await request(app)
       .post('/receiveFile')
       .send({
         name: 'testFile',
         format: 'txt',
-        // content and message are missing
+        // path and message are missing
       });
 
     expect(response.status).toBe(400);

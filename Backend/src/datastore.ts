@@ -19,7 +19,7 @@ interface File {
 
 interface ReceivedFile {
     fileId: string;
-    content: string;
+    path: string;
     recipient: string;
 }
 
@@ -76,7 +76,7 @@ export const addFile = (name: string, format: string, path: string, senderEmail:
 export const sendFile = (fileId: string, recipientEmail: string): void => {
   const file = data.files.find(file => file.id === fileId);
   if (file) {
-      const receivedFile: ReceivedFile = { fileId, content: file.path, recipient: recipientEmail };
+      const receivedFile: ReceivedFile = { fileId, path: file.path, recipient: recipientEmail };
       data.receivedFiles.push(receivedFile);
       // Add notification for recipient
       const message = `You received a file (${file.name}.${file.format}) from ${data.users[file.sender].name}`;
@@ -102,14 +102,14 @@ export const getFileById = (fileId: string): File | undefined => {
   return data.files.find(file => file.id === fileId);
 };
 
-export const addReceivedFile = (fileId: string, content: string): void => {
-  data.receivedFiles.push({ fileId, content });
+export const addReceivedFile = (fileId: string, path: string, recipient: string): void => {
+  data.receivedFiles.push({ fileId, path, recipient });
   setData(data);
 };
 
-export const getReceivedFileContent = (fileId: string): string | undefined => {
+export const getReceivedFilePath = (fileId: string): string | undefined => {
   const receivedFile = data.receivedFiles.find(file => file.fileId === fileId);
-  return receivedFile ? receivedFile.content : undefined;
+  return receivedFile ? receivedFile.path : undefined;
 };
 
 export const getAllPossibleFiles = (): File[] => {
@@ -117,21 +117,21 @@ export const getAllPossibleFiles = (): File[] => {
 };
 
 export const checkInternalSending = (fileId: string): boolean => {
-  const receivedContent = getReceivedFileContent(fileId);
-  if (!receivedContent) return false;
+  const receivedPath = getReceivedFilePath(fileId);
+  if (!receivedPath) return false;
 
   const possibleFile = getFileById(fileId);
   if (!possibleFile) return false;
 
-  return receivedContent === possibleFile.content;
+  return receivedPath === possibleFile.path;
 };
 
-export const addNotification = (fileId: string, message: string): void => {
-  data.notifications.push({ fileId, message });
+export const addNotification = (fileId: string, recipient: string, message: string): void => {
+  data.notifications.push({ fileId, recipient, message });
   setData(data);
 };
 
-export const getNotifications = (): notification[] => {
+export const getNotifications = (): Notification[] => {
   return data.notifications;
 };
 
@@ -140,7 +140,8 @@ function generateId(): string {
 }
 
 export const addUser = (name: string, email: string, password: string): void => {
-  data.users[email] = { name, email, password };
+  const sentFiles: string[] = []
+  data.users[email] = { name, email, password, sentFiles };
   setData(data);
 };
 
