@@ -1,7 +1,7 @@
 import fs from 'fs';
 import request from 'supertest';
 import app from '../main';
-import { clearData, addFile, getUserByEmail } from '../datastore';
+import { clearData, addFile, getUserByEmail, User } from '../datastore';
 
 beforeEach(() => {
   clearData();
