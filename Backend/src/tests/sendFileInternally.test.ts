@@ -42,7 +42,7 @@ describe('POST /sendFileInternally', () => {
       .field('recipientEmail', 'recipient@example.com');
 
     // Check if the response status is 200
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(200);
     // Check if the response body contains the success message
     expect(response.body).toHaveProperty('message', 'File sent successfully');
     // Check if the response body contains the fileId

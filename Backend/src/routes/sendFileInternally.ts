@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
 import { data, setData, File, Notification, generateId } from '../datastore';
-import { validateFileRequest } from '../middleware/validateRequest';
+import { validateSendFileRequest } from '../middleware/validateRequest';
 
 const router = express.Router();
 
 const upload = multer({ dest: 'uploads/' });
 
-router.post('/', upload.single('file'), validateFileRequest, (req: Request, res: Response) => {
+router.post('/', upload.single('file'), validateSendFileRequest, (req: Request, res: Response) => {
   // Extract necessary information from the request
   const { name, format, path, senderEmail, recipientEmail } = req.body;
   const fileId = generateId();

@@ -10,3 +10,13 @@ export const validateFileRequest = (req: Request, res: Response, next: NextFunct
 
   next();
 };
+
+export const validateSendFileRequest = (req: Request, res: Response, next: NextFunction) => {
+  const { name, format, path, senderEmail, recipientEmail } = req.body;
+
+  if (!name || !format || !path || !senderEmail || !recipientEmail ) {
+    return res.status(400).json({ message: 'name, format, path, senderEmail and recipientEmail are required' });
+  }
+
+  next();
+};
