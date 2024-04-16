@@ -2,9 +2,22 @@
 import express, { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { getUserByEmail } from '../datastore';
+import { getUserByEmail, tokenCache } from '../datastore';
 
 const router = express.Router();
+
+export function generateAuthToken(email: string): string {
+
+  if (tokenCache[email]) {
+    return tokenCache[email];
+  }
+
+  const token = jwt.sign({ userId: email }, 'secret', {expiresIn: '1h' });
+
+  tokenCache[email] = token;
+
+  return token;
+}
 
 router.post('/', async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -27,7 +40,7 @@ router.post('/', async (req: Request, res: Response) => {
   }
 
   // Create and send JWT token
-  const token = jwt.sign({ userId: email }, 'secret', { expiresIn: '1h' });
+  const token = generateAuthToken(email);
 
   res.status(200).json({ token, email });
 });

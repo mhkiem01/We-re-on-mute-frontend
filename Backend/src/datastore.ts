@@ -37,6 +37,10 @@ export let data: DataStore = {
   files: [],
   notifications: [],
 };
+
+// Token cache
+export const tokenCache: { [email: string]: string } = {};
+
 // Use getData() to access the data
 export function getData() {
   const dataString = fs.readFileSync('src/data.json');
@@ -120,6 +124,11 @@ export const clearData = (): void => {
   data.users = {};
   data.files = [];
   data.notifications = [];
+
+  // Clear token cache
+  for (const key in tokenCache) {
+    delete tokenCache[key];
+  }
 
   setData(data);
 };
