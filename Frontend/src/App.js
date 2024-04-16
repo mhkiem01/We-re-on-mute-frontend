@@ -5,11 +5,13 @@ import Login from './Login';
 import Signup from './Signup';
 import Homepage from './Home';
 import ComposePage from './Compose';
+import Compose from './testing';
 import InboxPage from './Inbox';
 import InboxItem from './InboxItem'; 
 import SentPage from './Sent';
 import Validation from './Validation'
 import Creation from './Creation'
+import RenderInvoice from './Randering';
 
 function App() {
   return (
@@ -19,11 +21,13 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/home' element={<Homepage />} />
         <Route path='/compose' element={<ComposePage />} />
+        <Route path='/testing' element={<Compose />} />
         <Route path='/inbox' element={<InboxPage />} />
         <Route path='/inbox/:id' element={<InboxItem />} /> 
         <Route path='/sent' element={<SentPage />} /> 
         <Route path='/validation' element={<Validation />} /> 
         <Route path='/creation' element={<Creation />} /> 
+        <Route path='/randering' element={<RenderInvoice />} /> 
       </Routes>
     </BrowserRouter>
   );
