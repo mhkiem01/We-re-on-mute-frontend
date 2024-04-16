@@ -1,7 +1,7 @@
 // routes/register.ts
 import express, { Request, Response } from 'express';
 import { addUser, getUserByEmail } from '../datastore';
-import bcrypt from 'bcryptjs';
+import bcrypt, { hash } from 'bcryptjs';
 
 const router = express.Router();
 
