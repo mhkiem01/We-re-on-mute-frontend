@@ -15,7 +15,7 @@ describe('POST /sendFileInternally', () => {
       password: 'password',
     };
 
-    await request(app).post('/register').send(sender)
+    await request(app).post('/register').send(sender);
 
     const recipient = {
       name: 'Recipient',
@@ -47,6 +47,5 @@ describe('POST /sendFileInternally', () => {
     expect(response.body).toHaveProperty('message', 'File sent successfully');
     // Check if the response body contains the fileId
     expect(response.body).toHaveProperty('fileId');
-
   });
 });

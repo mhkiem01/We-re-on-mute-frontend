@@ -49,7 +49,6 @@ export function setData(newData: DataStore) {
   fs.writeFileSync('src/data.json', dataString);
 }
 
-
 export const getSentFiles = (senderEmail: string): File[] => {
   return data.files.filter(file => file.sender === senderEmail);
 };
@@ -85,7 +84,7 @@ export const addNotification = (fileId: string, message: string): void => {
   setData(data);
 };
 
-export const getNotifications = (): notification[] => {
+export const getNotifications = (): Notification[] => {
   return data.notifications;
 };
 
