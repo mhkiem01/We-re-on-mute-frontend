@@ -69,16 +69,6 @@ export const getAllPossibleFiles = (): File[] => {
   return data.files;
 };
 
-export const checkInternalSending = (fileId: string): boolean => {
-  const receivedContent = getReceivedFileContent(fileId);
-  if (!receivedContent) return false;
-
-  const possibleFile = getFileById(fileId);
-  if (!possibleFile) return false;
-
-  return receivedContent === possibleFile.content;
-};
-
 export const addNotification = (fileId: string, message: string): void => {
   data.notifications.push({ fileId, message });
   setData(data);
