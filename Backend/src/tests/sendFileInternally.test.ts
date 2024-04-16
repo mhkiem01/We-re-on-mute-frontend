@@ -1,7 +1,7 @@
 import fs from 'fs';
 import request from 'supertest';
 import app from '../main';
-import { clearData, addFile } from '../datastore';
+import { clearData, addFile, getUserByEmail } from '../datastore';
 
 beforeEach(() => {
   clearData();
@@ -24,16 +24,24 @@ describe('POST /sendFileInternally', () => {
     };
     await request(app).post('/register').send(recipient);
 
-    const filePath = './src/example1.xml';
-    const fileContent = fs.readFileSync(filePath);
+    const fileData = {
+      name: 'example1',
+      format: 'xml',
+      path: './src/example1.xml',
+      senderEmail: sender.email,
+      recipientEmail: recipient.email
+    };
+
     const response = await request(app)
       .post('/sendFileInternally')
-      .field('to', 'recipient@example.com')
-      .field('subject', 'Test Subject')
-      .field('body', 'Test Body')
-      .attach('file', fileContent, {filename: 'test-file.xml' });
-
-      expect(response.status).toBe(200);
+      .send({
+        name: 'example1',
+        format: 'xml',
+        path: './src/example1.xml',
+        senderEmail: sender.email,
+        recipientEmail: recipient.email,
+      });
+      
+      expect(response.status).toBe(200)
   });
-
 });

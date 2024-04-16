@@ -33,7 +33,7 @@ router.post('/', async (req: Request, res: Response) => {
     attachments: [
       {
         filename: 'E-Invoice.xml',
-        path: './src/example1.xml',
+        path: xmlData,
         content: xmlData
       }
     ]

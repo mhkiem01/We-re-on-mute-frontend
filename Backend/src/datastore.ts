@@ -2,51 +2,41 @@
 
 import fs from 'fs';
 
-interface User {
+export interface User {
     name: string;
     email: string;
     password: string;
     sentFiles: string[];
+    receivedFiles: string[];
 }
 
-interface File {
+export interface File {
   id: string;
   name: string;
   format: string;
   path: string;
   sender: string;
+  recipient?: string;
+  timestamp: Date;
 }
 
-interface ReceivedFile {
-    fileId: string;
-    content: string;
-    recipient: string;
-}
-
-interface Notification {
+export interface Notification {
     fileId: string;
     recipient: string;
     message: string;
 }
 
-interface DataStore {
+export interface DataStore {
     users: { [key: string]: User };
     files: File[];
-    receivedFiles: ReceivedFile[];
     notifications: Notification[];
 }
 
-let data: DataStore = {
+export let data: DataStore = {
   users: {},
   files: [],
-  receivedFiles: [],
   notifications: [],
 };
-
-// const users: { [key: string]: User } = {};
-// const files: File[] = [];
-// const receivedFiles: receivedFile[] = [];
-// const notifications: notification[] = [];
 
 // Use getData() to access the data
 export function getData() {
@@ -55,43 +45,39 @@ export function getData() {
 }
 
 // Use setData(newData) to pass in the entire data object, with modifications made
-function setData(newData: DataStore) {
+export function setData(newData: DataStore) {
   const dataString = JSON.stringify(newData, null, 2);
   fs.writeFileSync('src/data.json', dataString);
 }
 
-export const addFile = (name: string, format: string, path: string, senderEmail: string): string => {
-  const fileId = generateId();
-  const file: File = { id: fileId, name, format, path, sender: senderEmail };
-  data.files.push(file);
-  // Update sender's sentFiles array
-  if (data.users[senderEmail]) {
-      data.users[senderEmail].sentFiles.push(fileId);
-  }
-  setData(data);
+// export const addFile = (name: string, format: string, path: string, senderEmail: string, recipientEmail: string): string => {
+//   const fileId = generateId();
+//   const timestamp = new Date(); // Current timestamp
+//   const file: File = { id: fileId, name, format, path, sender: senderEmail, recipient: recipientEmail, timestamp };
+//   data.files.push(file);
+//   // Update sender's sentFiles array
+//   if (data.users[senderEmail]) {
+//       data.users[senderEmail].sentFiles.push(fileId);
+//   }
+//   // Update recipient's receivedFiles array
+//   if (data.users[recipientEmail]) {
+//       data.users[recipientEmail].receivedFiles.push(fileId);
+//   }
+//   // Add notification for recipient
+//   const message = `You received a file (${name}.${format}) from ${data.users[senderEmail].name}`;
+//   const notification: Notification = { fileId, recipient: recipientEmail, message };
+//   data.notifications.push(notification);
+//   setData(data);
 
-  return fileId;
-};
-
-export const sendFile = (fileId: string, recipientEmail: string): void => {
-  const file = data.files.find(file => file.id === fileId);
-  if (file) {
-      const receivedFile: ReceivedFile = { fileId, content: file.path, recipient: recipientEmail };
-      data.receivedFiles.push(receivedFile);
-      // Add notification for recipient
-      const message = `You received a file (${file.name}.${file.format}) from ${data.users[file.sender].name}`;
-      const notification: Notification = { fileId, recipient: recipientEmail, message };
-      data.notifications.push(notification);
-      setData(data);
-  }
-};
+//   return fileId;
+// };
 
 export const getSentFiles = (senderEmail: string): File[] => {
   return data.files.filter(file => file.sender === senderEmail);
 };
 
-export const getReceivedFiles = (recipientEmail: string): ReceivedFile[] => {
-  return data.receivedFiles.filter(file => file.recipient === recipientEmail);
+export const getReceivedFiles = (recipientEmail: string): File[] => {
+  return data.files.filter(file => file.recipient === recipientEmail);
 };
 
 export const getNotificationsForUser = (recipientEmail: string): Notification[] => {
@@ -100,16 +86,6 @@ export const getNotificationsForUser = (recipientEmail: string): Notification[] 
 
 export const getFileById = (fileId: string): File | undefined => {
   return data.files.find(file => file.id === fileId);
-};
-
-export const addReceivedFile = (fileId: string, content: string): void => {
-  data.receivedFiles.push({ fileId, content });
-  setData(data);
-};
-
-export const getReceivedFileContent = (fileId: string): string | undefined => {
-  const receivedFile = data.receivedFiles.find(file => file.fileId === fileId);
-  return receivedFile ? receivedFile.content : undefined;
 };
 
 export const getAllPossibleFiles = (): File[] => {
@@ -176,7 +152,6 @@ export const clearData = (): void => {
   // empty array
   data.users = {};
   data.files = [];
-  data.receivedFiles = [];
   data.notifications = [];
 
   setData(data);
