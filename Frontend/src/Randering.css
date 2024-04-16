@@ -1,0 +1,49 @@
+/* RenderInvoice.css */
+.render-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    padding-top: 50px; /* Added some padding at the top for breathing space */
+}
+
+.render-form {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Slightly wider than file-submit-container */
+    margin-bottom: 20px;
+}
+
+.render-form textarea,
+.render-form button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.render-form button {
+    background-color: #6D5F9F;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.render-form button:hover {
+    background-color: #7C69D4;
+}
+
+.render-response {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+}
+
+.render-response pre,
+.render-response div {
+    white-space: pre-wrap; /* Ensures preformatted text is wrapped appropriately */
+}
