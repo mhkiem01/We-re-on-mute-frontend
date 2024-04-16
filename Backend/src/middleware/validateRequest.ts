@@ -20,3 +20,13 @@ export const validateSendFileRequest = (req: Request, res: Response, next: NextF
 
   next();
 };
+
+export const validateReceiveFileRequest = (req: Request, res: Response, next: NextFunction) => {
+  const { name, format, content, recipient, message } = req.body;
+
+  if (!name || !format || !content || !recipient || !message) {
+    return res.status(400).json({ message: 'Missing required fields' });
+}
+
+  next();
+};

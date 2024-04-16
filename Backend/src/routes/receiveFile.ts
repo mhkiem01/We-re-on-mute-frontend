@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
 import { addReceivedFile, addNotification, getUserByEmail } from '../datastore';
-import { validateFileRequest } from '../middleware/validateRequest';
+import { validateReceiveFileRequest } from '../middleware/validateRequest';
 
 const router = express.Router();
 
-router.post('/', validateFileRequest, (req: Request, res: Response) => {
+router.post('/', validateReceiveFileRequest, (req: Request, res: Response) => {
     const { name, format, content, recipient, message } = req.body;
 
     if (!name || !format || !content || !recipient || !message) {
