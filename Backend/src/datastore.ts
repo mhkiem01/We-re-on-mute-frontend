@@ -37,7 +37,6 @@ export let data: DataStore = {
   files: [],
   notifications: [],
 };
-
 // Use getData() to access the data
 export function getData() {
   const dataString = fs.readFileSync('src/data.json');
@@ -50,27 +49,6 @@ export function setData(newData: DataStore) {
   fs.writeFileSync('src/data.json', dataString);
 }
 
-// export const addFile = (name: string, format: string, path: string, senderEmail: string, recipientEmail: string): string => {
-//   const fileId = generateId();
-//   const timestamp = new Date(); // Current timestamp
-//   const file: File = { id: fileId, name, format, path, sender: senderEmail, recipient: recipientEmail, timestamp };
-//   data.files.push(file);
-//   // Update sender's sentFiles array
-//   if (data.users[senderEmail]) {
-//       data.users[senderEmail].sentFiles.push(fileId);
-//   }
-//   // Update recipient's receivedFiles array
-//   if (data.users[recipientEmail]) {
-//       data.users[recipientEmail].receivedFiles.push(fileId);
-//   }
-//   // Add notification for recipient
-//   const message = `You received a file (${name}.${format}) from ${data.users[senderEmail].name}`;
-//   const notification: Notification = { fileId, recipient: recipientEmail, message };
-//   data.notifications.push(notification);
-//   setData(data);
-
-//   return fileId;
-// };
 
 export const getSentFiles = (senderEmail: string): File[] => {
   return data.files.filter(file => file.sender === senderEmail);
