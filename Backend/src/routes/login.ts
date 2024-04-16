@@ -6,13 +6,13 @@ import { getUserByEmail, tokenCache } from '../datastore';
 
 const router = express.Router();
 
-export function generateAuthToken(email: string): string {
+export function generateAuthToken (email: string): string {
 
   if (tokenCache[email]) {
     return tokenCache[email];
   }
 
-  const token = jwt.sign({ userId: email }, 'secret', {expiresIn: '1h' });
+  const token = jwt.sign({ userId: email }, 'secret', { expiresIn: '1h' });
 
   tokenCache[email] = token;
 
