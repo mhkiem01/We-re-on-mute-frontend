@@ -1,26 +1,20 @@
 import express, { Request, Response } from 'express';
-import { addReceivedFile, addNotification, getUserByEmail } from '../datastore';
+import { getReceivedFiles } from '../datastore';
 import { validateReceiveFileRequest } from '../middleware/validateRequest';
 
 const router = express.Router();
 
 router.post('/', validateReceiveFileRequest, (req: Request, res: Response) => {
-  const { name, format, content, recipient, message } = req.body;
+  const { recipientEmail } = req.body;
 
-  if (!name || !format || !content || !recipient || !message) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
+  // Retrieve received files for the recipient
+  const receivedFiles = getReceivedFiles(recipientEmail);
 
-  const recipientUser = getUserByEmail(recipient);
+  // Sort received files by timestamp in descending order (most recent first)
+  receivedFiles.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
 
-  if (!recipientUser) {
-    return res.status(404).json({ message: 'Recipient not found' });
-  }
-
-  const fileId = addReceivedFile(name, format, content, recipient);
-  addNotification(fileId, message);
-
-  res.status(200).json({ message: 'File received internally and notification added successfully', fileId });
+  // Send the sorted list of received files in the response
+  res.status(200).json({ receivedFiles });
 });
 
 export default router;
