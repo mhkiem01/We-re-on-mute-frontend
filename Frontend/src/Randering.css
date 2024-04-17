@@ -1,0 +1,59 @@
+.render-page {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 20px; /* Add padding to the sidebar */
+    /* Additional styles for the sidebar */
+}
+
+.render-container {
+    flex-grow: 1;
+    padding: 20px;
+    /* Other styles for your render-container */
+}
+
+.render-form {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px; /* Add padding to the render-form */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin-left: 20px; /* Add margin to separate from sidebar */
+    /* Slightly wider than file-submit-container */
+}
+
+.render-form textarea,
+.render-form button {
+    width: calc(100% - 40px); /* Adjust width to consider padding */
+    margin-top: 10px;
+}
+
+.render-form button {
+    background-color: #6D5F9F;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.render-form button:hover {
+    background-color: #7C69D4;
+}
+
+.render-response {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+}
+
+.render-response pre,
+.render-response div {
+    white-space: pre-wrap;
+    /* Ensures preformatted text is wrapped appropriately */
+}

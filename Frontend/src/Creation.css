@@ -1,43 +1,52 @@
 /* Creation.css */
 .creation-page {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh; /* Full viewport height */
-  }
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh; 
+  background-color: #f3f3f3;
+  font-family: 'Arial', sans-serif;
+}
 
-  .creation-content {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #f3f3f3; /* Light grey background */
-  }
+.creation-content {
+  flex: 1;
+  padding: 20px;
+  margin-top: -20px;
+}
 
-  .file-submit-container {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-  }
+.file-submit-container {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
 
-  .file-submit-container label,
-  .file-submit-container p {
-    margin-bottom: 10px;
-  }
+.file-submit-container label,
+.file-submit-container p {
+  margin-bottom: 10px;
+}
 
-  .file-submit-container input[type='file'] {
-    margin-bottom: 10px;
-  }
+.file-submit-container input[type='file'] {
+  margin-bottom: 10px;
+}
 
-  .file-submit-btn {
-    background-color: #6D5F9F;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+.file-submit-btn {
+  background-color: #6F5AC9;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  .file-submit-btn:hover {
-    background-color: #7C69D4;
-  }
+.file-submit-btn:hover {
+  background-color: #7C69D4;
+}
+
+.sidebar {
+  flex: 0 0 auto; /* Prevent sidebar from growing */
+  margin-right: 20px; /* Adjust spacing between sidebar and content */
+  padding: 20px;
+  margin-top: 10px;
+}

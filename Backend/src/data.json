@@ -1,5 +1,11 @@
 {
-  "users": {},
+  "users": {
+    "aqisha99@yahoo.com": {
+      "name": "Muhammad Hakiem Bin Zulkifli",
+      "email": "aqisha99@yahoo.com",
+      "password": "$2a$10$kYQQenw9qEbl8QrotKN9DOJSnIzXOwRU9XowUzbYxM98XbMG.w3zu"
+    }
+  },
   "files": [],
   "notifications": []
 }

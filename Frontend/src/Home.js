@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './Home.css'; // Import the CSS for styling
 const Homepage = () => {
@@ -18,8 +17,9 @@ const Homepage = () => {
               <li><a href="/compose" className="menu-button">Compose</a></li>
               <li><a href="/inbox" className="menu-button">Inbox</a></li>
               <li><a href="/sent" className="menu-button">Sent</a></li>
-              <li><a href="/validation" className="menu-button">Validation</a></li>
               <li><a href="/creation" className="menu-button">Creation</a></li>
+              <li><a href="/validation" className="menu-button">Validation</a></li>
+              <li><a href="/randering" className="menu-button">Rendering</a></li>
             </ul>
           </nav>
         </main>

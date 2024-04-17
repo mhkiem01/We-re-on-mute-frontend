@@ -1,12 +1,24 @@
 /* Validation.css */
 .validation-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    flex-direction: row;
+    min-height: 100vh; 
     background-color: #f3f3f3;
     font-family: 'Arial', sans-serif;
+}
+
+.sidebar {
+    flex: 0 0 auto; /* Prevent sidebar from growing */
+    margin-right: 20px; /* Adjust spacing between sidebar and content */
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.validation-content {
+    flex: 1; /* Allow content to grow and fill remaining space */
+    padding: 20px;
+    margin-top: -20px;
+
 }
 
 .validation-container h1 {
@@ -23,6 +35,10 @@
 
 .validation-container .selection-group {
     margin-bottom: 20px;
+}
+.validation-container .validation-content {
+    /* Your styles for validation content */
+    margin-top: 20px;
 }
 
 .validation-container .selection-group label {
@@ -54,3 +70,21 @@
     display: block;
     margin-top: 10px;
 }
+
+.file-submit-container {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+
+  .file-submit-container label,
+  .file-submit-container p {
+    margin-bottom: 10px;
+  }
+
+  .file-submit-container input[type='file'] {
+    margin-bottom: 10px;
+  }
