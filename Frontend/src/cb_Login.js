@@ -1,8 +1,8 @@
 import React from 'react';
-import './Login.css'; // Make sure this points to your CSS file
+import './cb_Login.css'; // Make sure this points to your CSS file
 
 
-function Login() {
+function cb_Login() {
   return (
     <div className="login-container">
       {/* Background image half */}
@@ -40,4 +40,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default cb_Login;
