@@ -1,0 +1,92 @@
+.homepage {
+    display: flex;
+    height: 100vh;
+}
+
+.background-half {
+    flex: 1;
+    background-image: url('./images.jpeg');
+    background-size: calc(100% - 10px) calc(100% - 10px);
+    background-repeat: no-repeat;
+}
+
+.content-half {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.top-half {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.top-half h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.top-half h2 {
+    margin: 0;
+    font-size: 16px;
+    color: #555; /* Dark gray color for better readability */
+}
+
+.logout-button {
+    align-self: flex-end;
+    margin-top: -20px;
+    text-decoration: none;
+    color: #007bff;
+    background-color: #f0f0f0; /* Light gray background for the logout button */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+}
+
+.menu {
+    width: 50%;
+    padding: 20px;
+}
+
+.menu h2 {
+    margin-bottom: 10px;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    background-color: #f0f0f0;
+    padding: 15px 40px;
+    border-radius: 5px;
+}
+
+.menu li {
+    margin-bottom: 10px;
+    margin-left: -20px;
+}
+
+.menu-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #9c6ade;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: #7F00FF;
+}
