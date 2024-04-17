@@ -1,0 +1,84 @@
+.signup-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .background-half {
+    flex: 1;
+    background-color: #f0f0f0; /* Light gray background */
+    /* Set background image or other styling as needed */
+    background: url('./images.jpeg') no-repeat center center;
+    background-size: cover;
+  }
+  
+  .form-half {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .signup-form {
+    width: 80%;
+    max-width: 400px;
+    /* Adjust max-width as needed */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .signup-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 36px;
+    /* Adjust the font size as needed */
+    font-weight: bold;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .signup-button {
+    display: block;
+    /* or inline-block, if you prefer */
+    width: auto;
+    /* or you can use a percentage */
+    padding: 12px;
+    margin: 0 auto;
+    /* centers the button when display is block */
+    background-color: #9c6ade; /* Purple button */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    /* ensures the text is centered */
+    text-decoration: none;
+    /* removes underline from the link */
+    /* Add a max-width if needed */
+    max-width: 200px;
+    /* This should be adjusted based on your design needs */
+  }
+  
+  .signup-button:hover {
+    background-color: #7F00FF; /* Darker purple on hover */
+  }
+  
+  .login-section {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .login-link {
+    color: #007bff; /* Blue color for the login link */
+  }
+  
