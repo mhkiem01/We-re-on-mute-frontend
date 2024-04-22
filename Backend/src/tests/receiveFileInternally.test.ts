@@ -37,9 +37,9 @@ describe('POST /sendFileInternally', () => {
 
     const response = await request(app)
       .post('/receiveFile')
-      .send({ recipientEmail } );
+      .send({ recipientEmail });
 
-      expect(response.status).toBe(400);
-      expect(response.body).toBeInstanceOf(Object);
+    expect(response.status).toBe(400);
+    expect(response.body).toBeInstanceOf(Object);
   });
 });
